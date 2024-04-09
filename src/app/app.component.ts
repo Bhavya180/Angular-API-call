@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppService } from './app.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,6 +16,9 @@ export class AppComponent implements OnInit {
   searchID: string = '';
   isSortedByTitle: boolean = false;
   showCompleted: number = 0; // Property to track the completion status display mode
+  displayedColumns: string[] = ['userId', 'id', 'title', 'completed'];
+  panelOpenState: boolean = false; // Declare panelOpenState property
+
 
   constructor(private service: AppService) { }
 
@@ -36,6 +40,7 @@ export class AppComponent implements OnInit {
     );
   }
 
+  
   reverseData() {
     if (this.data) {
       this.data.reverse(); // Reversing the data array

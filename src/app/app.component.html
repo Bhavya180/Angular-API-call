@@ -1,29 +1,105 @@
-<h1>{{ title }}</h1>
-<div>
-<input type="text" [(ngModel)]="searchTerm" placeholder="Enter ID">
-<button (click)="searchData()">Search</button>
+    <mat-toolbar color="primary">
+        <span>{{ title }}</span>
+    </mat-toolbar>
+    
+    <div class="input-container">
+        <mat-form-field appearance="fill">
+        <input matInput [(ngModel)]="searchTerm" placeholder="Enter ID">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="searchData()">Search</button>
+    </div>
+
+    <div class="input-container">
+    <mat-form-field appearance="fill">
+        <input matInput [(ngModel)]="searchID" placeholder="Enter user ID">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="searchuser()">Search UserID</button>
+    </div>
+
+    <div class="button-container">
+        <button mat-raised-button color="primary" (click)="reverseData()">
+            <mat-icon>compare_arrows</mat-icon>
+    Reverse Data
+  </button>
 </div>
-
-<div>
-<input type="text" [(ngModel)]="searchID" placeholder="Enter user ID">
-<button (click)="searchuser()">Search</button>
+    
+    <div class="button-container">
+        <button mat-raised-button color="primary" (click)="sortByTitle()">
+            <mat-icon>sort</mat-icon>Sort by Title</button>
 </div>
-
-<div><button (click)="reverseData()">Reverse Data</button></div>
-
-<div><button (click)="sortByTitle()">Sort by Title</button></div>
-
-<div>
-    <button (click)="toggleCompletionStatus()">Completion Status </button>
+    
+    <div class="button-container">
+        <button mat-raised-button color="primary" (click)="toggleCompletionStatus()">
+            <mat-icon>{{ showCompleted === 1 ? 'visibility_off' : 'visibility' }}</mat-icon>
+    {{ showCompleted === 1 ? 'Show Incomplete' : 'Show Completed' }}
+  </button>
 </div>
+    
+    
+    <div class="button-container">
+        <button mat-raised-button color="warn" (click)="resetData()">
+            <mat-icon>refresh</mat-icon>
+            Reset
+          </button>
+        </div>
 
-<div>
-    <button (click)="resetData()">Reset</button>
-</div>
+    <div *ngFor="let item of data">
+    <span> user id = {{ item.userId }}</span>
+    <span> id = {{ item.id }}</span>
+    <span> title = {{ item.title }}</span>
+    <span> completed = {{ item.completed }}</span>
+    </div>
 
-<div *ngFor ="let item of data">
-<span> user id = {{ item.userId }}</span>
-<span> id = {{ item.id }}</span>
-<span> title = {{ item.title }}</span>
-<span> completed = {{ item.completed }}</span>
-</div>
+    <!-- <div class="table-container mat-elevation-z8">
+        <table mat-table [dataSource]="data" class="mat-elevation-z8">
+    
+        <ng-container matColumnDef="userId">
+            <th mat-header-cell *matHeaderCellDef>User ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.userId }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="completed">
+            <th mat-header-cell *matHeaderCellDef>Completed</th>
+            <td mat-cell *matCellDef="let element">{{ element.completed }}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div> -->
+
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              This is the expansion title
+            </mat-panel-title>
+            <mat-panel-description>
+              This is a summary of the content
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Self aware panel
+            </mat-panel-title>
+            <mat-panel-description>
+              Currently I am {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>I'm visible because I am open</p>
+        </mat-expansion-panel>
+      </mat-accordion>

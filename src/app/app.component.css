@@ -1,0 +1,13 @@
+.input-container,
+.button-container {
+  margin-bottom: 10px; /* Adjust the value to add more or less space between the containers */
+}
+
+.table-container {
+    margin-top: 20px;
+  }
+  
+  .mat-elevation-z8 {
+    box-shadow: none; /* Remove shadow for a flatter appearance */
+  }
+  
